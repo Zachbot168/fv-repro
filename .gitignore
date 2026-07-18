@@ -13,3 +13,11 @@ paper/*.pdf
 
 # OS
 .DS_Store
+
+# Results provenance: track eval jsons + *indirect_effect*.pt, but NOT the
+# large regenerable mean-activation tensors.
+*_mean_head_activations.pt
+# Never track HF cache / model weights (also lives outside the repo at /workspace/hf_cache)
+hf_cache/
+*.safetensors
+*.bin
