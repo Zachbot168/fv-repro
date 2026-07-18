@@ -33,3 +33,84 @@
 [1784365939] START Qwen_Qwen2.5-7B capitalize main skip_shuffled=False
 [1784365955] ERROR Qwen_Qwen2.5-7B capitalize main elapsed=16s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
 [1784365955] START Qwen_Qwen2.5-7B country-capital main skip_shuffled=False
+[1784365964] ERROR Qwen_Qwen2.5-7B country-capital main elapsed=10s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
+[1784365964] START Qwen_Qwen2.5-7B english-french main skip_shuffled=False
+[1784366020] ERROR Qwen_Qwen2.5-7B english-french main elapsed=56s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
+[1784366020] START Qwen_Qwen2.5-7B present-past main skip_shuffled=False
+[1784366030] ERROR Qwen_Qwen2.5-7B present-past main elapsed=10s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
+[1784366030] START Qwen_Qwen2.5-7B singular-plural main skip_shuffled=False
+[1784366039] ERROR Qwen_Qwen2.5-7B singular-plural main elapsed=9s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
+[1784366039] SKIP_KABL Qwen_Qwen2.5-7B antonym (no main zs results)
+[1784366039] SKIP_KABL Qwen_Qwen2.5-7B country-capital (no main zs results)
+[1784366039] MODEL_DONE Qwen_Qwen2.5-7B
+[1784366040] LOAD_START mistralai/Mistral-7B-v0.3
+[1784366041] LOAD_ERROR mistralai/Mistral-7B-v0.3 :: ImportError('\n requires the protobuf library but it was not found in your environment. Checkout the instructions on the\ninstallation page of its repo: https://github.com/protocolbuffers/protobuf/tree/master/python#installation and follow the ones\nthat match your environment. Please note that you may need to restart your runtime after installation.\n')
+[1784366041] LOAD_START EleutherAI/gpt-j-6b
+[1784366065] LOAD_DONE EleutherAI/gpt-j-6b elapsed=24s n_layers=28 prepend_bos=False
+[1784366065] SKIP EleutherAI_gpt-j-6b antonym main (cached)
+[1784366065] START EleutherAI_gpt-j-6b capitalize main skip_shuffled=False
+[1784366228] SWEEP_START models=['meta-llama/Llama-3.1-8B', 'Qwen/Qwen2.5-7B', 'mistralai/Mistral-7B-v0.3', 'EleutherAI/gpt-j-6b']
+[1784366228] LOAD_START meta-llama/Llama-3.1-8B
+[1784366240] LOAD_DONE meta-llama/Llama-3.1-8B elapsed=12s n_layers=32 prepend_bos=True
+[1784366240] SKIP meta-llama_Llama-3.1-8B antonym main (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B capitalize main (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B country-capital main (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B english-french main (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B present-past main (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B singular-plural main (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B antonym k5 (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B antonym k20 (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B antonym k50 (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B country-capital k5 (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B country-capital k20 (cached)
+[1784366240] SKIP meta-llama_Llama-3.1-8B country-capital k50 (cached)
+[1784366240] MODEL_DONE meta-llama_Llama-3.1-8B
+[1784366241] LOAD_START Qwen/Qwen2.5-7B
+[1784366250] LOAD_DONE Qwen/Qwen2.5-7B elapsed=9s n_layers=28 prepend_bos=False
+[1784366250] START Qwen_Qwen2.5-7B antonym main skip_shuffled=False
+[1784366891] ERROR Qwen_Qwen2.5-7B antonym main elapsed=641s :: UnboundLocalError("cannot access local variable 'out_proj' where it is not associated with a value")
+[1784366891] START Qwen_Qwen2.5-7B capitalize main skip_shuffled=False
+[1784367156] SWEEP_START models=['meta-llama/Llama-3.1-8B', 'Qwen/Qwen2.5-7B', 'mistralai/Mistral-7B-v0.3', 'EleutherAI/gpt-j-6b']
+[1784367156] LOAD_START meta-llama/Llama-3.1-8B
+[1784367160] LOAD_DONE meta-llama/Llama-3.1-8B elapsed=4s n_layers=32 prepend_bos=True
+[1784367160] SKIP meta-llama_Llama-3.1-8B antonym main (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B capitalize main (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B country-capital main (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B english-french main (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B present-past main (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B singular-plural main (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B antonym k5 (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B antonym k20 (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B antonym k50 (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B country-capital k5 (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B country-capital k20 (cached)
+[1784367160] SKIP meta-llama_Llama-3.1-8B country-capital k50 (cached)
+[1784367160] MODEL_DONE meta-llama_Llama-3.1-8B
+[1784367160] LOAD_START Qwen/Qwen2.5-7B
+[1784367164] LOAD_DONE Qwen/Qwen2.5-7B elapsed=4s n_layers=28 prepend_bos=False
+[1784367164] START Qwen_Qwen2.5-7B antonym main skip_shuffled=False
+[1784368531] DONE Qwen_Qwen2.5-7B antonym main elapsed=1367s bestL=16 bestFVacc=0.6407
+[1784368531] START Qwen_Qwen2.5-7B capitalize main skip_shuffled=False
+[1784369875] DONE Qwen_Qwen2.5-7B capitalize main elapsed=1344s bestL=17 bestFVacc=0.9941
+[1784369875] START Qwen_Qwen2.5-7B country-capital main skip_shuffled=False
+[1784370762] DONE Qwen_Qwen2.5-7B country-capital main elapsed=888s bestL=19 bestFVacc=0.3810
+[1784370762] START Qwen_Qwen2.5-7B english-french main skip_shuffled=False
+[1784374624] DONE Qwen_Qwen2.5-7B english-french main elapsed=3862s bestL=17 bestFVacc=0.0296
+[1784374624] START Qwen_Qwen2.5-7B present-past main skip_shuffled=False
+[1784375515] DONE Qwen_Qwen2.5-7B present-past main elapsed=891s bestL=19 bestFVacc=0.4746
+[1784375515] START Qwen_Qwen2.5-7B singular-plural main skip_shuffled=False
+[1784376357] DONE Qwen_Qwen2.5-7B singular-plural main elapsed=842s bestL=17 bestFVacc=0.9024
+[1784376357] START Qwen_Qwen2.5-7B antonym k5 editlayer=16 skip_shuffled=False
+[1784376401] DONE Qwen_Qwen2.5-7B antonym k5 elapsed=45s
+[1784376401] START Qwen_Qwen2.5-7B antonym k20 editlayer=16 skip_shuffled=False
+[1784376446] DONE Qwen_Qwen2.5-7B antonym k20 elapsed=45s
+[1784376446] START Qwen_Qwen2.5-7B antonym k50 editlayer=16 skip_shuffled=False
+[1784376490] DONE Qwen_Qwen2.5-7B antonym k50 elapsed=44s
+[1784376490] START Qwen_Qwen2.5-7B country-capital k5 editlayer=19 skip_shuffled=False
+[1784376496] DONE Qwen_Qwen2.5-7B country-capital k5 elapsed=6s
+[1784376496] START Qwen_Qwen2.5-7B country-capital k20 editlayer=19 skip_shuffled=False
+[1784376501] DONE Qwen_Qwen2.5-7B country-capital k20 elapsed=6s
+[1784376501] START Qwen_Qwen2.5-7B country-capital k50 editlayer=19 skip_shuffled=False
+[1784376507] DONE Qwen_Qwen2.5-7B country-capital k50 elapsed=6s
+[1784376507] MODEL_DONE Qwen_Qwen2.5-7B
+[1784376507] LOAD_START mistralai/Mistral-7B-v0.3
