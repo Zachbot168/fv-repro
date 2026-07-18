@@ -1,0 +1,35 @@
+{
+  "dataset_name": "country-capital",
+  "model_name": "meta-llama/Llama-3.1-8B",
+  "root_data_dir": "/workspace/fv-repro/function_vectors/src/../dataset_files",
+  "save_path_root": "/workspace/fv-repro/results_repro/meta-llama_Llama-3.1-8B/k50",
+  "ie_path_root": "/workspace/fv-repro/results_repro/meta-llama_Llama-3.1-8B",
+  "seed": 42,
+  "device": "cuda",
+  "mean_activations_path": null,
+  "indirect_effect_path": null,
+  "n_top_heads": 50,
+  "edit_layer": 14,
+  "test_split": 0.3,
+  "n_shots": 10,
+  "n_mean_activations_trials": 100,
+  "n_indirect_effect_trials": 25,
+  "prefixes": {
+    "input": "Q:",
+    "output": "A:",
+    "instructions": ""
+  },
+  "separators": {
+    "input": "\n",
+    "output": "\n\n",
+    "instructions": ""
+  },
+  "compute_baseline": false,
+  "generate_str": false,
+  "metric": "f1_score",
+  "universal_set": false,
+  "revision": null,
+  "fs_results_file_name": "/workspace/fv-repro/results_repro/meta-llama_Llama-3.1-8B/k50/country-capital/fs_results_layer_sweep.json",
+  "zs_results_file_name": "/workspace/fv-repro/results_repro/meta-llama_Llama-3.1-8B/k50/country-capital/zs_results_editlayer_14.json",
+  "fs_shuffled_results_file_name": "/workspace/fv-repro/results_repro/meta-llama_Llama-3.1-8B/k50/country-capital/fs_shuffled_results_editlayer_14.json"
+}

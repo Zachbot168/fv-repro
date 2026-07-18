@@ -1,0 +1,35 @@
+[1784351885] SWEEP_START models=['meta-llama/Llama-3.1-8B', 'Qwen/Qwen2.5-7B', 'mistralai/Mistral-7B-v0.3', 'EleutherAI/gpt-j-6b']
+[1784351885] LOAD_START meta-llama/Llama-3.1-8B
+[1784351890] LOAD_DONE meta-llama/Llama-3.1-8B elapsed=5s n_layers=32 prepend_bos=True
+[1784351890] START meta-llama_Llama-3.1-8B antonym main skip_shuffled=False
+[1784354490] DONE meta-llama_Llama-3.1-8B antonym main elapsed=2600s bestL=13 bestFVacc=0.4775
+[1784354490] START meta-llama_Llama-3.1-8B capitalize main skip_shuffled=False
+[1784356261] DONE meta-llama_Llama-3.1-8B capitalize main elapsed=1771s bestL=14 bestFVacc=0.9235
+[1784356261] START meta-llama_Llama-3.1-8B country-capital main skip_shuffled=False
+[1784357633] DONE meta-llama_Llama-3.1-8B country-capital main elapsed=1373s bestL=14 bestFVacc=0.4762
+[1784357633] START meta-llama_Llama-3.1-8B english-french main skip_shuffled=False
+[1784363156] DONE meta-llama_Llama-3.1-8B english-french main elapsed=5523s bestL=11 bestFVacc=0.0537
+[1784363156] START meta-llama_Llama-3.1-8B present-past main skip_shuffled=False
+[1784364467] DONE meta-llama_Llama-3.1-8B present-past main elapsed=1311s bestL=8 bestFVacc=0.0333
+[1784364467] START meta-llama_Llama-3.1-8B singular-plural main skip_shuffled=False
+[1784365736] DONE meta-llama_Llama-3.1-8B singular-plural main elapsed=1269s bestL=12 bestFVacc=0.7805
+[1784365736] START meta-llama_Llama-3.1-8B antonym k5 editlayer=13 skip_shuffled=False
+[1784365785] DONE meta-llama_Llama-3.1-8B antonym k5 elapsed=49s
+[1784365785] START meta-llama_Llama-3.1-8B antonym k20 editlayer=13 skip_shuffled=False
+[1784365835] DONE meta-llama_Llama-3.1-8B antonym k20 elapsed=49s
+[1784365835] START meta-llama_Llama-3.1-8B antonym k50 editlayer=13 skip_shuffled=False
+[1784365884] DONE meta-llama_Llama-3.1-8B antonym k50 elapsed=49s
+[1784365884] START meta-llama_Llama-3.1-8B country-capital k5 editlayer=14 skip_shuffled=False
+[1784365890] DONE meta-llama_Llama-3.1-8B country-capital k5 elapsed=6s
+[1784365890] START meta-llama_Llama-3.1-8B country-capital k20 editlayer=14 skip_shuffled=False
+[1784365896] DONE meta-llama_Llama-3.1-8B country-capital k20 elapsed=6s
+[1784365896] START meta-llama_Llama-3.1-8B country-capital k50 editlayer=14 skip_shuffled=False
+[1784365902] DONE meta-llama_Llama-3.1-8B country-capital k50 elapsed=6s
+[1784365902] MODEL_DONE meta-llama_Llama-3.1-8B
+[1784365902] LOAD_START Qwen/Qwen2.5-7B
+[1784365907] LOAD_DONE Qwen/Qwen2.5-7B elapsed=5s n_layers=28 prepend_bos=False
+[1784365907] START Qwen_Qwen2.5-7B antonym main skip_shuffled=False
+[1784365939] ERROR Qwen_Qwen2.5-7B antonym main elapsed=32s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
+[1784365939] START Qwen_Qwen2.5-7B capitalize main skip_shuffled=False
+[1784365955] ERROR Qwen_Qwen2.5-7B capitalize main elapsed=16s :: UnboundLocalError("cannot access local variable 'new_output' where it is not associated with a value")
+[1784365955] START Qwen_Qwen2.5-7B country-capital main skip_shuffled=False
