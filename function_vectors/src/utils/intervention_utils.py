@@ -89,6 +89,10 @@ def replace_activation_w_avg(layer_head_token_pairs, avg_activations, model, mod
             elif 'olmo' in model_config['name_or_path'].lower():
                 new_output = torch.matmul(inputs, out_proj.T)
 
+            elif 'qwen' in model_config['name_or_path'].lower() or 'mistral' in model_config['name_or_path'].lower():
+                # Qwen2.5 / Mistral-v0.3: o_proj is nn.Linear(bias=False), same projection as Llama/GPT-J
+                new_output = torch.matmul(inputs, out_proj.T)
+
             return new_output
         else:
             return output
@@ -301,6 +305,10 @@ def add_avg_to_activation(layer_head_token_pairs, avg_activations, model, model_
                     new_output = torch.matmul(inputs, out_proj.T)
             
             elif 'olmo' in model_config['name_or_path'].lower():
+                new_output = torch.matmul(inputs, out_proj.T)
+
+            elif 'qwen' in model_config['name_or_path'].lower() or 'mistral' in model_config['name_or_path'].lower():
+                # Qwen2.5 / Mistral-v0.3: o_proj is nn.Linear(bias=False), same projection as Llama/GPT-J
                 new_output = torch.matmul(inputs, out_proj.T)
             
             return new_output

@@ -8,3 +8,4 @@ scikit-learn
 matplotlib
 seaborn
 git+https://github.com/davidbau/baukit@main
+protobuf
