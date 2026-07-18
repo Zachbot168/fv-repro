@@ -1,0 +1,10 @@
+torch
+transformers==4.49.0
+accelerate
+datasets
+bitsandbytes
+sentencepiece
+scikit-learn
+matplotlib
+seaborn
+git+https://github.com/davidbau/baukit@main
