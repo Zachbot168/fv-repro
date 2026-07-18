@@ -141,3 +141,29 @@
 [1784390951] DONE mistralai_Mistral-7B-v0.3 country-capital k50 elapsed=7s
 [1784390951] MODEL_DONE mistralai_Mistral-7B-v0.3
 [1784390952] LOAD_START EleutherAI/gpt-j-6b
+[1784390986] LOAD_DONE EleutherAI/gpt-j-6b elapsed=34s n_layers=28 prepend_bos=False
+[1784390986] SKIP EleutherAI_gpt-j-6b antonym main (cached)
+[1784390986] START EleutherAI_gpt-j-6b capitalize main skip_shuffled=False
+[1784395204] DONE EleutherAI_gpt-j-6b capitalize main elapsed=4218s bestL=10 bestFVacc=0.7751
+[1784395204] START EleutherAI_gpt-j-6b country-capital main skip_shuffled=False
+[1784398091] DONE EleutherAI_gpt-j-6b country-capital main elapsed=2886s bestL=8 bestFVacc=0.9024
+[1784398091] START EleutherAI_gpt-j-6b english-french main skip_shuffled=False
+[1784410737] DONE EleutherAI_gpt-j-6b english-french main elapsed=12646s bestL=5 bestFVacc=0.7253
+[1784410737] START EleutherAI_gpt-j-6b present-past main skip_shuffled=False
+[1784412969] DONE EleutherAI_gpt-j-6b present-past main elapsed=2232s bestL=3 bestFVacc=0.5517
+[1784412969] START EleutherAI_gpt-j-6b singular-plural main skip_shuffled=False
+[1784415334] DONE EleutherAI_gpt-j-6b singular-plural main elapsed=2364s bestL=13 bestFVacc=0.8333
+[1784415334] START EleutherAI_gpt-j-6b antonym k5 editlayer=11 skip_shuffled=False
+[1784415458] DONE EleutherAI_gpt-j-6b antonym k5 elapsed=125s
+[1784415458] START EleutherAI_gpt-j-6b antonym k20 editlayer=11 skip_shuffled=False
+[1784415583] DONE EleutherAI_gpt-j-6b antonym k20 elapsed=125s
+[1784415583] START EleutherAI_gpt-j-6b antonym k50 editlayer=11 skip_shuffled=False
+[1784415708] DONE EleutherAI_gpt-j-6b antonym k50 elapsed=125s
+[1784415708] START EleutherAI_gpt-j-6b country-capital k5 editlayer=8 skip_shuffled=False
+[1784415727] DONE EleutherAI_gpt-j-6b country-capital k5 elapsed=19s
+[1784415727] START EleutherAI_gpt-j-6b country-capital k20 editlayer=8 skip_shuffled=False
+[1784415746] DONE EleutherAI_gpt-j-6b country-capital k20 elapsed=19s
+[1784415746] START EleutherAI_gpt-j-6b country-capital k50 editlayer=8 skip_shuffled=False
+[1784415765] DONE EleutherAI_gpt-j-6b country-capital k50 elapsed=19s
+[1784415765] MODEL_DONE EleutherAI_gpt-j-6b
+[1784415765] SWEEP_DONE

@@ -21,3 +21,6 @@ paper/*.pdf
 hf_cache/
 *.safetensors
 *.bin
+
+# large regenerable run logs
+results_repro/sweep_console.log
