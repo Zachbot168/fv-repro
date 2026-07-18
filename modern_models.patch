@@ -1,0 +1,41 @@
+diff --git a/src/utils/model_utils.py b/src/utils/model_utils.py
+index 371a0c8..da0fabf 100644
+--- a/src/utils/model_utils.py
++++ b/src/utils/model_utils.py
+@@ -79,6 +79,25 @@ def load_gpt_model_and_tokenizer(model_name:str, device='cuda', revision=None):
+                       "layer_hook_names":[f'model.layers.{layer}' for layer in range(model.config.num_hidden_layers)],
+                       "prepend_bos":True}
+         
++    elif 'qwen' in model_name.lower() or 'mistral' in model_name.lower():
++        # Modern GQA decoder models (Qwen2.5, Mistral-7B). Same hook naming as Llama.
++        tokenizer = AutoTokenizer.from_pretrained(model_name)
++        model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16).to(device)
++
++        # The FV codebase assumes head_dim == hidden_size / n_heads when splitting
++        # o_proj inputs into per-head slices (extract_utils.py, intervention_utils.py).
++        # This holds for Qwen2.5/Mistral/Llama-3 but NOT for e.g. Gemma-2/3 — hard fail early.
++        _head_dim = getattr(model.config, 'head_dim', None) or model.config.hidden_size // model.config.num_attention_heads
++        assert _head_dim * model.config.num_attention_heads == model.config.hidden_size, \
++            f"{model_name}: head_dim*n_heads != hidden_size; per-head splitting in this codebase is invalid for this architecture"
++
++        MODEL_CONFIG={"n_heads":model.config.num_attention_heads,
++                      "n_layers":model.config.num_hidden_layers,
++                      "resid_dim":model.config.hidden_size,
++                      "name_or_path":model.config._name_or_path,
++                      "attn_hook_names":[f'model.layers.{layer}.self_attn.o_proj' for layer in range(model.config.num_hidden_layers)],
++                      "layer_hook_names":[f'model.layers.{layer}' for layer in range(model.config.num_hidden_layers)],
++                      "prepend_bos":False}
+     elif 'llama' in model_name.lower():
+         if '70b' in model_name.lower():
+             # use quantization. requires `bitsandbytes` library
+@@ -96,7 +115,9 @@ def load_gpt_model_and_tokenizer(model_name:str, device='cuda', revision=None):
+                     quantization_config=bnb_config
+             )
+         else:
+-            if '7b' in model_name.lower() or '8b' in model_name.lower():
++            if 'llama-3' in model_name.lower() or 'meta-llama-3' in model_name.lower():
++                model_dtype = torch.bfloat16  # Llama-3.x: bf16 native; fp32 (32GB) unnecessary
++            elif '7b' in model_name.lower() or '8b' in model_name.lower():
+                 model_dtype = torch.float32
+             else: #half precision for bigger llama models
+                 model_dtype = torch.float16

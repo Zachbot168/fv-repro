@@ -1,0 +1,44 @@
+% BlackboxNLP 2026 Reproducibility Challenge submission
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+\documentclass[11pt]{article}
+\usepackage[review]{acl}   % review mode = anonymized; switch to [final] for camera-ready
+\usepackage{times,latexsym,graphicx,booktabs,amsmath}
+
+\title{Do Function Vectors Transfer? A Reproducibility Study on Modern GQA Language Models}
+\author{Anonymous BlackboxNLP submission}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Function vectors (FVs; Todd et al., 2024) are compact task representations
+extracted from a small set of attention heads that, when added to the residual
+stream, induce zero-shot task execution. We reproduce the core FV results on
+GPT-J-6B and test their generalizability to three modern grouped-query-attention
+models: Llama-3.1-8B, Qwen2.5-7B, and Mistral-7B-v0.3. % TODO: results sentence
+\end{abstract}
+
+\section{Introduction}
+% Why FV generalizability matters; challenge theme framing.
+
+\section{Background: Function Vectors}
+% 1/2 page method summary: mean head activations, AIE head selection, injection.
+
+\section{Experimental Setup}
+% Models table, 6 tasks, what we changed (bf16, qwen/mistral branch, head_dim
+% constraint) and what we held fixed (seeds, prompts, transformers pin).
+
+\section{Results}
+\subsection{Reproduction on GPT-J} % Table 1
+\subsection{Generalization to modern models} % Table 2
+\subsection{Where should the FV be injected?} % Figure 1: layer sweep vs L/3 rule
+\subsection{How many heads?} % Table 3: k ablation
+\subsection{Concentration of causal effect} % Table 4: AIE share of top-10 heads
+
+\section{Discussion}
+% Which heuristics transfer; architectural boundary condition (head_dim x n_heads
+% = hidden_size); negative results as boundary conditions.
+
+\section{Limitations}
+
+\bibliography{refs}
+\end{document}
