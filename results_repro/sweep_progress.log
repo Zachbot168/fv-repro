@@ -114,3 +114,30 @@
 [1784376507] DONE Qwen_Qwen2.5-7B country-capital k50 elapsed=6s
 [1784376507] MODEL_DONE Qwen_Qwen2.5-7B
 [1784376507] LOAD_START mistralai/Mistral-7B-v0.3
+[1784376624] LOAD_DONE mistralai/Mistral-7B-v0.3 elapsed=116s n_layers=32 prepend_bos=False
+[1784376624] START mistralai_Mistral-7B-v0.3 antonym main skip_shuffled=False
+[1784379511] DONE mistralai_Mistral-7B-v0.3 antonym main elapsed=2887s bestL=14 bestFVacc=0.1180
+[1784379511] START mistralai_Mistral-7B-v0.3 capitalize main skip_shuffled=False
+[1784381460] DONE mistralai_Mistral-7B-v0.3 capitalize main elapsed=1949s bestL=20 bestFVacc=0.0059
+[1784381460] START mistralai_Mistral-7B-v0.3 country-capital main skip_shuffled=False
+[1784383199] DONE mistralai_Mistral-7B-v0.3 country-capital main elapsed=1739s bestL=0 bestFVacc=0.0488
+[1784383199] START mistralai_Mistral-7B-v0.3 english-french main skip_shuffled=False
+[1784388313] DONE mistralai_Mistral-7B-v0.3 english-french main elapsed=5115s bestL=8 bestFVacc=0.0541
+[1784388313] START mistralai_Mistral-7B-v0.3 present-past main skip_shuffled=False
+[1784389577] DONE mistralai_Mistral-7B-v0.3 present-past main elapsed=1263s bestL=12 bestFVacc=0.1897
+[1784389577] START mistralai_Mistral-7B-v0.3 singular-plural main skip_shuffled=False
+[1784390793] DONE mistralai_Mistral-7B-v0.3 singular-plural main elapsed=1216s bestL=14 bestFVacc=0.4146
+[1784390793] START mistralai_Mistral-7B-v0.3 antonym k5 editlayer=14 skip_shuffled=False
+[1784390839] DONE mistralai_Mistral-7B-v0.3 antonym k5 elapsed=46s
+[1784390839] START mistralai_Mistral-7B-v0.3 antonym k20 editlayer=14 skip_shuffled=False
+[1784390885] DONE mistralai_Mistral-7B-v0.3 antonym k20 elapsed=46s
+[1784390885] START mistralai_Mistral-7B-v0.3 antonym k50 editlayer=14 skip_shuffled=False
+[1784390931] DONE mistralai_Mistral-7B-v0.3 antonym k50 elapsed=46s
+[1784390931] START mistralai_Mistral-7B-v0.3 country-capital k5 editlayer=0 skip_shuffled=False
+[1784390938] DONE mistralai_Mistral-7B-v0.3 country-capital k5 elapsed=7s
+[1784390938] START mistralai_Mistral-7B-v0.3 country-capital k20 editlayer=0 skip_shuffled=False
+[1784390945] DONE mistralai_Mistral-7B-v0.3 country-capital k20 elapsed=7s
+[1784390945] START mistralai_Mistral-7B-v0.3 country-capital k50 editlayer=0 skip_shuffled=False
+[1784390951] DONE mistralai_Mistral-7B-v0.3 country-capital k50 elapsed=7s
+[1784390951] MODEL_DONE mistralai_Mistral-7B-v0.3
+[1784390952] LOAD_START EleutherAI/gpt-j-6b
