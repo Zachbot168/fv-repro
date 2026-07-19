@@ -36,7 +36,7 @@ MODELS = [  # (results tag, display name, n_layers)
 ]
 TASKS = ['antonym', 'capitalize', 'country-capital', 'english-french', 'present-past', 'singular-plural']
 
-# Todd et al. (ICLR 2024), Table 10 (arXiv 2310.15213v2): GPT-J zero-shot accuracy with
+# Todd et al. (ICLR 2024), Table 6 (arXiv 2310.15213v2): GPT-J zero-shot accuracy with
 # the task FV (v_t column), mean +/- std over seeds, at the paper's chosen layer.
 PAPER_GPTJ_FV = {'antonym': (48.2, 2.0), 'capitalize': (70.5, 2.4), 'country-capital': (83.2, 2.7),
                  'english-french': (44.7, 1.2), 'present-past': (19.7, 5.9), 'singular-plural': (47.0, 3.4)}
@@ -99,7 +99,7 @@ for t in TASKS:
 write_table('T1_gptj_reproduction',
             ['Task', 'Paper +FV (%)', 'Ours +FV (%)', 'Best layer', 'No-interv (%)', 'FV effect (pp)'],
             rows,
-            'T1: GPT-J-6B reproduction. Paper values are Todd et al. Table 10 (zero-shot accuracy '
+            'T1: GPT-J-6B reproduction. Paper values are Todd et al. Table 6 (zero-shot accuracy '
             'with the task FV at their chosen layer, mean±std over seeds); ours are best-over-layer-sweep '
             '(single seed 42), so ours upper-bound the paper protocol.')
 summary['T1'] = t1_data
@@ -147,7 +147,7 @@ for tag, name, nl in MODELS:
         t3_data[f'{name}/{t}'] = {'layer': int(bL), **{f'k{K}': round(float(v), 3) for K, v in vals.items()}}
 write_table('T3_k_ablation', ['Model', 'Task', 'Layer', 'k=5', 'k=10', 'k=20', 'k=50', 'k=100'], rows,
             'T3: Zero-shot accuracy with FV built from top-k heads, injected at the best layer from '
-            'the main (k=10) sweep. k=100 run for Mistral antonym only.')
+            'the main (k=10) sweep. k=100 run for Mistral antonym only; dashes = not run.')
 summary['T3'] = t3_data
 
 # ---------------- T4: AIE concentration ----------------

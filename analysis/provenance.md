@@ -6,7 +6,7 @@ meta-llama_Llama-3.1-8B, Qwen_Qwen2.5-7B, mistralai_Mistral-7B-v0.3}, `<T>` ∈ 
 
 | Artifact | Derived from | By |
 |---|---|---|
-| T1 (GPT-J vs paper) | `results_repro/EleutherAI_gpt-j-6b/<T>/zs_results_layer_sweep.json`; paper column = Todd et al. Table 10 (arXiv 2310.15213v2) | `analysis/make_tables.py` |
+| T1 (GPT-J vs paper) | `results_repro/EleutherAI_gpt-j-6b/<T>/zs_results_layer_sweep.json`; paper column = Todd et al. Table 6 (arXiv 2310.15213v2) | `analysis/make_tables.py` |
 | T2 (FV effect matrix) | `results_repro/<M>/<T>/zs_results_layer_sweep.json` (effect = top-1 `intervention_topk` − `clean_topk`, max over layers) | `analysis/make_tables.py` |
 | T3 (k-ablation) | k=10 from the main sweep; k∈{5,20,50} from `results_repro/<M>/k<K>/<T>/zs_results_editlayer_<L>.json`; k=100 (Mistral antonym) from `results_repro/mistralai_Mistral-7B-v0.3/k100/antonym/zs_results_editlayer_14.json` | `analysis/make_tables.py` |
 | T4 / F2 (AIE concentration) | `results_repro/<M>/<T>/<T>_indirect_effect.pt` (mean over 25 trials; share = top-k sum / positive sum) | `analysis/make_tables.py` |

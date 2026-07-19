@@ -56,7 +56,8 @@ Mean AIE per head from the committed `*_indirect_effect.pt` files, averaged over
 | Mistral-7B-v0.3 | 1024 | **0.30** | **0.02** |
 
 Mistral has both the flattest AIE distribution (lowest top-10 concentration) and per-head
-causal effects **3–15× weaker in absolute terms** than any other model. This is a property
+causal effects **2.5–6.7× weaker on the six-task mean** (per-task range 1.6–15×) than any
+other model. This is a property
 of the *measured causal structure* (computed upstream of the FV-construction code that was
 patched), not of the injection.
 
@@ -110,5 +111,7 @@ recovery with k (§5). None of these is what a broken dispatch/intervention woul
 weakest per-head effects (§3), and the k-dose-response (§5) all point the same way. We do
 not claim this is the full explanation — the total collapse of capitalize (0.006 vs 0.92–0.99
 on every other model) and the non-recovery of country-capital at k≤50 are unexplained
-residuals worth deeper study (e.g., k>100, per-layer FV composition, sliding-window attention
-effects) — but the null result itself is a property of the model, reportable as such.
+residuals worth deeper study (e.g., k>100, per-layer FV composition) — but the null result
+itself is a property of the model, reportable as such. (Note: sliding-window attention is
+not a candidate factor — it is a Mistral v0.1 feature; the v0.3 checkpoint used here does
+not use it.)

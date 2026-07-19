@@ -25,25 +25,28 @@ execution. We first reproduce the core FV results on GPT-J-6B --- our antonym
 accuracy at the paper's operating layer is 49.2\% against a reported
 $48.2 \pm 2.0\%$ --- and then stress-test the method's \emph{generalizability}
 on three modern grouped-query-attention models: Llama-3.1-8B, Qwen2.5-7B, and
-Mistral-7B-v0.3. The core mechanism transfers: with the paper's own recipe
-(top-10 heads), FVs raise zero-shot accuracy by $+0.33$ to $+0.94$ on 4 of 6
-tasks for Llama-3.1 and 5 of 6 for Qwen2.5. The paper's heuristics and
-interpretive claims, however, prove GPT-J-specific in five ways: the optimal
-injection layer drifts from ${\sim}0.32\times$ depth (the source of the
-``inject at $L/3$'' rule) to ${\sim}0.61\times$ depth on Qwen2.5; top-10
-heads is not a universal operating point; English--French translation fails
-on all three modern models; Mistral-7B-v0.3 shows near-zero FV effect at
-top-10 heads on every task, recovering monotonically with head count
-(accuracy 0.45 at $k{=}100$) --- consistent with a more distributed task
-representation, and mirrored by the flattest measured concentration of
-causal effect; and FV vocabulary decodability does not generalize --- only
-GPT-J's FV decodes to task-relevant tokens, while working FVs on modern
-models decode to noise. We report these negative results as boundary
-conditions that sharpen, rather than overturn, the function-vector
-picture.\footnote{Code, the modernization patch, and all raw result files
-will be released upon publication.
-% TODO-CHECK(user): confirm whether the track allows an anonymized repo link
-% (e.g. anonymous.4open.science) instead of this placeholder.
+Mistral-7B-v0.3. The core mechanism transfers: at the paper's GPT-J
+operating point (top-10 heads), FVs raise zero-shot accuracy by $+0.33$ to
+$+0.94$ on 4 of 6 tasks for Llama-3.1 and 5 of 6 for Qwen2.5. The paper's
+heuristics and interpretive claims, however, prove GPT-J-specific in five
+ways. The optimal injection layer drifts from ${\sim}0.32\times$ depth (the
+source of the ``inject at $L/3$'' rule) to ${\sim}0.61\times$ depth on
+Qwen2.5, and no single head count is optimal across models and tasks.
+English--French translation fails on all three modern models.
+Mistral-7B-v0.3 shows near-zero FV effect at top-10 heads on every task,
+recovering monotonically with head count (accuracy 0.45 at $k{=}100$) ---
+consistent with a more distributed task representation, and mirrored by the
+flattest measured concentration of causal effect. Finally, FV vocabulary
+decodability does not generalize: the antonym FV decodes to task-relevant
+tokens on GPT-J, but on the modern models even working FVs decode to noise.
+We report these negative results as boundary conditions that sharpen,
+rather than overturn, the function-vector
+picture.\footnote{An anonymized mirror of the code, the modernization
+patch, and all raw result files is available at
+\url{https://anonymous.4open.science/r/REPLACE-ME}; a de-anonymized
+release will accompany publication.
+% TODO-CHECK(user): paste the real anonymous.4open.science URL over
+% REPLACE-ME before submission.
 }
 \end{abstract}
 
@@ -63,10 +66,11 @@ showed that a small set of attention heads carries a compact, causally
 efficacious representation of an in-context task: summing those heads'
 task-conditioned outputs yields a \emph{function vector} (FV) that, added to
 a hidden state at an early-middle layer, makes the model perform the task
-zero-shot. The finding comes with practical heuristics --- select the top-10
-heads by average indirect effect, inject around one third of network depth
---- and an interpretive claim (FVs decode to task-relevant vocabulary) that
-subsequent work tends to adopt wholesale.
+zero-shot. The finding comes with practical heuristics --- select the top
+heads by average indirect effect (10 for GPT-J, scaled up with a model's
+head count), inject around one third of network depth --- and an
+interpretive claim (FVs decode to task-relevant vocabulary for most tasks)
+that subsequent work tends to adopt wholesale.
 
 Following the reproducibility-challenge theme of \emph{generalizability}, we
 ask: do the FV findings, the heuristics, and the interpretation survive the
@@ -107,9 +111,12 @@ $\bar{a}^t_{\ell j}$ and the resulting increase in probability of the
 correct answer is the causal indirect effect; averaging over prompts and
 tasks gives the \emph{average indirect effect} (AIE). The FV is the sum of
 mean activations over the set $\mathcal{A}$ of top-AIE heads,
-$v_t = \sum_{(\ell,j)\in\mathcal{A}} \bar{a}^t_{\ell j}$, with
-$|\mathcal{A}| = 10$ for 6--7B models. At inference, $v_t$ is simply added
-to the hidden state at one layer $\ell$ of the residual stream.
+$v_t = \sum_{(\ell,j)\in\mathcal{A}} \bar{a}^t_{\ell j}$. Their footnote~1
+prescribes $|\mathcal{A}| = 10$ for GPT-J, scaled approximately
+proportionally to a model's attention-head count for larger models (20 for
+Llama-2-7B, 50 for Llama-2-13B and GPT-NeoX, 100 for Llama-2-70B). At
+inference, $v_t$ is simply added to the hidden state at one layer $\ell$ of
+the residual stream.
 
 On GPT-J, \citet{todd2024function} report that adding the FV at layer 9
 (${\approx}L/3$ of 28 layers) raises zero-shot accuracy, macro-averaged over
@@ -117,7 +124,8 @@ the six headline tasks, from $5.5 \pm 0.8\%$ to $57.5 \pm 1.7\%$, with
 strong causal effects concentrated at early-middle layers, and that FVs
 also repair shuffled-label 10-shot prompts ($39.1 \pm 1.2\%$ to
 $90.8 \pm 0.9\%$). They further show that decoding an FV through the
-unembedding yields task-relevant vocabulary. The mechanism is related to,
+unembedding yields tokens in the task's output space for most tasks
+(their \S3.2). The mechanism is related to,
 but distinct from, the contemporaneous task vectors of
 \citet{hendel2023incontext}, which use a single hidden state rather than a
 sum of selected head outputs.
@@ -126,8 +134,10 @@ sum of selected head outputs.
 
 \paragraph{Models.} GPT-J-6B (28 layers, multi-head attention, the
 reproduction anchor) and three modern GQA models: Llama-3.1-8B (32 layers),
-Qwen2.5-7B (28), Mistral-7B-v0.3 (32). All are base (non-instruct)
-checkpoints. All four satisfy
+Qwen2.5-7B (28), Mistral-7B-v0.3 (32).\footnote{Checkpoint
+\texttt{mistralai/Mistral-7B-v0.3}; \citet{jiang2023mistral} describes
+v0.1 --- v0.3 differs, i.a., in tokenizer and vocabulary size.} All are
+base (non-instruct) checkpoints. All four satisfy
 $d_{\text{head}} \times n_{\text{heads}} = d_{\text{model}}$, which the
 original codebase assumes when splitting the attention output projection
 input into per-head contributions.
@@ -140,7 +150,8 @@ using the original dataset files.
 authors' code and prompt format (\texttt{Q:}/\texttt{A:}), seed (42),
 \texttt{transformers} 4.49.0 (the authors' pin), 100 prompts for mean
 activations, 25 shuffled-label trials for AIE, 10-shot prompts, top-10 heads
-as the default operating point, and the evaluation protocol: test items are
+as the default operating point (the paper's GPT-J setting;
+\S\ref{sec:heads} varies $k$ up to 100), and the evaluation protocol: test items are
 filtered to those the model answers correctly with 10 clean shots (filtered
 $n$ per task and model ranges from 41 to 819), and accuracy is first-token
 top-1.
@@ -193,15 +204,15 @@ paper's fixed-layer protocol. The direct apples-to-apples check: injecting
 at the paper's operating layer (layer 9), our antonym accuracy is
 \textbf{49.2\%} against the reported $48.2 \pm 2.0\%$
 \citep{todd2024function} --- within noise. On shuffled-label 10-shot
-prompts, the antonym FV lifts accuracy from 46.4\% to 86.8\%, matching the
-reported regime (six-task average $90.8 \pm 0.9\%$). We conclude the
-pipeline is faithful and move to the generalization question.
+prompts, the antonym FV at the same layer lifts accuracy from 46.4\% to
+85.9\%, matching the reported regime (six-task average $90.8 \pm 0.9\%$).
+We conclude the pipeline is faithful.
 
 \subsection{Generalization to modern models}
 \label{sec:gen}
 
-Table~\ref{tab:T2_generalization} is the headline result. With the original
-recipe unchanged, FVs transfer strongly to Llama-3.1-8B (4/6 tasks, effects
+Table~\ref{tab:T2_generalization} is the headline result. At the paper's
+GPT-J operating point, FVs transfer strongly to Llama-3.1-8B (4/6 tasks, effects
 $+0.43$ to $+0.88$) and Qwen2.5-7B (5/6 tasks, $+0.33$ to $+0.94$), in
 several cases exceeding the GPT-J effect (capitalize, singular-plural).
 Grouped-query attention per se does not break function vectors.
@@ -259,17 +270,22 @@ First, top-10 is not a universal operating point: on GPT-J antonym the
 accuracy keeps rising to $k{=}20$ (0.70); on Llama-3.1 country-capital,
 $k{=}10$ (0.48) is far from $k{=}50$ (0.93); on Qwen2.5 antonym, $k{=}10$
 is already the peak (0.64). The $k$-response is model- \emph{and}
-task-dependent. (Mistral country-capital had no effective layer; its row,
-evaluated at the degenerate layer 0, is reported for completeness only.)
+task-dependent. Under the original paper's own proportional-scaling
+guidance (${\sim}20$ heads for these 28--32-head models, vs.\ GPT-J's 16),
+the conclusion is unchanged: at $k{=}20$ Mistral antonym remains near
+floor (0.16) while Llama-3.1 (0.69) and Qwen2.5 (0.62) transfer. (Mistral
+country-capital had no effective layer; its row, evaluated at the
+degenerate layer 0, is reported for completeness only.)
 
 Second, and most diagnostically: \textbf{Mistral's antonym accuracy rises
 monotonically with $k$} --- 0.09, 0.12, 0.16, 0.34, and \textbf{0.45 at
 $k{=}100$} --- reaching the range of the other models' $k{=}10$ accuracies
 (0.48--0.64). The null result of Table~\ref{tab:T2_generalization} is
-therefore not an inert pipeline: adding more heads smoothly recovers most
-of the effect, while country-capital stays at floor through $k{=}50$. This
-is the pattern one would expect if the task signal in Mistral is spread
-across more heads than the top-10 selection captures.
+therefore not consistent with an inert pipeline: adding more heads
+smoothly recovers most of the effect, while country-capital stays at floor
+through $k{=}50$. This is the pattern one would expect if the task signal
+in Mistral is spread across more heads than the top-10 selection captures
+(full argument in \S\ref{sec:discussion}).
 
 \begin{figure}[t]
 \centering
@@ -291,7 +307,7 @@ directly from the measured indirect effects, upstream of any FV
 construction. GPT-J's top-10 heads capture 0.63 of total positive AIE mass;
 all three modern models are far flatter (0.37, 0.37, 0.30), with Mistral
 lowest. Mistral is also weakest in absolute terms: its largest single-head
-mean AIE (0.021) is $2.5$--$6.8\times$ smaller than the other models'
+mean AIE (0.021) is $2.5$--$6.7\times$ smaller than the other models'
 (0.053--0.142).
 
 Two readings follow. First, the original ``small set of causal heads''
@@ -310,7 +326,7 @@ distribution with per-head effects several times weaker.
 Our results sort into one reproduction and five boundary conditions.
 
 \paragraph{The core finding is architecture-robust.} On two of three
-modern GQA models, the unchanged 2023 recipe produces FV effects as large
+modern GQA models, the unchanged GPT-J recipe produces FV effects as large
 as, or larger than, on GPT-J. Nothing about grouped-query attention,
 larger vocabularies, or newer training pipelines is inherently hostile to
 function vectors.
@@ -363,23 +379,29 @@ captures. We do not claim this is the full explanation: capitalize's total
 collapse ($+0.01$ against $+0.78$ to $+0.94$ on every other model) and
 country-capital's non-recovery through $k{=}50$ are not explained by the
 distributed account, and we flag them as open residuals
-(\S\ref{sec:limitations}).
+(\S\ref{sec:limitations}). The non-recovery does, however, argue against
+one further artifact hypothesis --- scrambled head \emph{selection}: if
+the AIE ranking were quasi-random, adding heads should recover all tasks
+at broadly similar rates, not antonym alone.
 
 \paragraph{Boundary 5: vocab-decodability of FVs does not generalize.}
-\citet{todd2024function} showed that decoding an FV through the
-unembedding yields task-relevant tokens, an influential piece of the
-method's interpretability narrative. We reproduce this on GPT-J --- its
-antonym FV decodes to tokens such as \emph{`` vs''}, \emph{`` counterpart''},
+\citet{todd2024function} report (their \S3.2) that decoded FV tokens lie
+within the task's output space \emph{for most tasks} --- they themselves
+note English--French as an exception that decodes to nonsense on GPT-J
+even though its FV works, while antonym decodes to words evoking the
+abstract idea of reversal. We reproduce the antonym case on GPT-J --- its
+FV decodes to tokens such as \emph{`` vs''}, \emph{`` counterpart''},
 \emph{`` versus''}, \emph{`` oppos-''} --- but on all three modern models
-the FV decodes to noise (whitespace, punctuation, unrelated code and
-multilingual fragments), \emph{including Llama-3.1 and Qwen2.5, whose FVs
-work}. Decodability therefore separates GPT-J from modern models
-generally; it carries no information about why Mistral fails, and we do
-not use it as evidence in Boundary 4. The finding stands on its own: the
-FV \emph{mechanism} transfers to modern models, but the claim that FVs
-point at task vocabulary is GPT-J-specific. Interpretability methods that
-validate interventions by reading them through the unembedding would
-declare these working FVs broken.
+even the antonym FV decodes to noise (whitespace, punctuation, unrelated
+code and multilingual fragments), \emph{including on Llama-3.1 and
+Qwen2.5, whose FVs work}. Their per-task caveat thus extends to a
+per-model one: on modern models, decodability fails even for the task
+that decodes most cleanly on GPT-J. Because decodability does not
+separate Mistral from the working modern models, we do not use it as
+evidence in Boundary 4. The FV \emph{mechanism} transfers to modern
+models, but vocabulary readout as a window into FVs is GPT-J-specific:
+interpretability methods that validate interventions by reading them
+through the unembedding would declare these working FVs broken.
 
 \paragraph{An architectural boundary of the tooling.} Independent of any
 result, the released FV code assumes
@@ -399,7 +421,9 @@ at seed 42; we report no variance. Cells with small filtered test sets
 sampling noise of several points, and fine-grained orderings (e.g.\
 non-monotonic $k$-responses in Table~\ref{tab:T3_k_ablation}) should be
 read accordingly. The large qualitative gaps (transfer vs.\ null) are far
-outside this noise.
+outside this noise: the worst-case binomial 95\% confidence half-width at
+$n{=}41$ ($p{=}0.5$) is $\pm 0.15$, well below the transfer effects of
+$+0.33$ to $+0.94$ against nulls of $\le +0.07$.
 \textbf{First-token top-1 metric.} Inherited from the original evaluation;
 it under-credits multi-token answers, which is most acute for
 english-french. Our conclusion there is robust to the direction of this
@@ -407,17 +431,16 @@ bias only because GPT-J succeeds under the same metric; a
 string-generation metric would strengthen it.
 \textbf{Best-layer selection.} $\ell^*$ maximizes effect on the same
 filtered test set it is evaluated on --- an oracle over 28--32 layers.
-This inflates all models equally and is the protocol most favorable to
-finding transfer, which makes the null and near-null cells conservative.
+This inflates all models equally and favors finding transfer, making the
+null and near-null cells conservative.
 \textbf{Unexplained residuals.} The distributed-representation account of
 Mistral does not explain capitalize's total collapse or country-capital's
 non-recovery through $k{=}50$; probing these (e.g.\ $k > 100$, per-layer
-FV composition, interaction with sliding-window attention) is future work.
+FV composition) is future work.
 \textbf{Coverage.} Six of the original ${\sim}40$ tasks; three modern
 models in the 7--8B range, base checkpoints only; filtered evaluation sets
-condition on 10-shot ICL success, as in the original work. Findings may
-not extend to larger scales, instruction-tuned variants, or the long tail
-of tasks.
+condition on 10-shot ICL success. Findings may not extend to larger
+scales, instruction-tuned models, or the task long tail.
 
 % TODO-CHECK(user): add an Acknowledgments section for camera-ready (omitted
 % entirely in review mode to preserve anonymity).
