@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Model & \# heads & Top-10 AIE share & Top-1\% AIE share & Max per-head AIE \\
+\midrule
+GPT-J-6B & 448 & 0.63 & 0.44 & 0.142 \\
+Llama-3.1-8B & 1024 & 0.37 & 0.37 & 0.127 \\
+Qwen2.5-7B & 784 & 0.37 & 0.34 & 0.053 \\
+Mistral-7B-v0.3 & 1024 & 0.30 & 0.30 & 0.021 \\
+\bottomrule
+\end{tabular}
+\caption{T4: Concentration of causal task signal. Share of total positive mean AIE mass captured by the top-10 (and top-1% of) heads, and the largest single-head mean AIE, averaged over the six tasks.}
+\label{tab:T4_aie_concentration}
+\end{table}

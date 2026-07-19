@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Task & GPT-J-6B & Llama-3.1-8B & Qwen2.5-7B & Mistral-7B-v0.3 \\
+\midrule
+antonym & +0.60 (L11) & +0.47 (L13) & +0.64 (L16) & +0.07 (L14) \\
+capitalize & +0.78 (L10) & +0.88 (L14) & +0.94 (L17) & +0.01 (L20) \\
+country-capital & +0.85 (L8) & +0.43 (L14) & +0.33 (L19) & +0.00 (L0) \\
+english-french & +0.71 (L5) & +0.05 (L11) & +0.03 (L17) & +0.00 (L8) \\
+present-past & +0.53 (L3) & +0.02 (L8) & +0.47 (L19) & +0.00 (L12) \\
+singular-plural & +0.62 (L13) & +0.78 (L12) & +0.88 (L17) & +0.00 (L14) \\
+tasks transferring (effect>0.3) & 6/6 & 4/6 & 5/6 & 0/6 \\
+\bottomrule
+\end{tabular}
+\caption{T2: Zero-shot FV effect (accuracy with FV minus no-intervention accuracy, top-1) at the best-effect layer, per model and task.}
+\label{tab:T2_generalization}
+\end{table}

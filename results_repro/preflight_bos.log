@@ -1,0 +1,33 @@
+
+==============================================================================
+MODEL: meta-llama/Llama-3.1-8B
+Loading:  meta-llama/Llama-3.1-8B
+Downloading shards:   0%|          | 0/4 [00:00<?, ?it/s]Downloading shards:  25%|██▌       | 1/4 [00:55<02:45, 55.05s/it]Downloading shards:  50%|█████     | 2/4 [01:52<01:53, 56.55s/it]Downloading shards:  75%|███████▌  | 3/4 [02:35<00:50, 50.19s/it]Downloading shards: 100%|██████████| 4/4 [02:45<00:00, 34.32s/it]Downloading shards: 100%|██████████| 4/4 [02:45<00:00, 41.31s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  5.50it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  6.60it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  6.64it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.18it/s]
+  model_config['prepend_bos'] = True  ->  prompt prepend_bos_token = False
+  tokenizer.bos_token = '<|begin_of_text|>'  bos_token_id = 128000
+  tokenizer.add_bos_token attr = N/A
+
+  [eval path]  prompt starts: 'Q: noise\nA: silence\n\nQ: lesbian\nA: strai'
+  first 8 token ids : [128000, 48, 25, 12248, 198, 32, 25, 21847]
+  first 8 decoded   : ['<|begin_of_text|>', 'Q', ':', ' noise', '\n', 'A', ':', ' silence']
+  leading BOS-like tokens: 1 ([128000])
+  [mean-acts path] n_token_labels=90  first label='bos_token' first tok='<|begin_of_text|>'
+  VERDICT: OK (single leading BOS)
+
+==============================================================================
+MODEL: Qwen/Qwen2.5-7B
+Loading:  Qwen/Qwen2.5-7B
+Downloading shards:   0%|          | 0/4 [00:00<?, ?it/s]Downloading shards:  25%|██▌       | 1/4 [00:30<01:32, 30.82s/it]Downloading shards:  50%|█████     | 2/4 [01:00<00:59, 29.97s/it]Downloading shards:  75%|███████▌  | 3/4 [01:29<00:29, 29.74s/it]Downloading shards: 100%|██████████| 4/4 [01:56<00:00, 28.75s/it]Downloading shards: 100%|██████████| 4/4 [01:56<00:00, 29.22s/it]
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  6.06it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  7.28it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.98it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.52it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  8.01it/s]
+  model_config['prepend_bos'] = False  ->  prompt prepend_bos_token = True
+  tokenizer.bos_token = None  bos_token_id = None
+  tokenizer.add_bos_token attr = N/A
+
+  [eval path]  prompt starts: '<|endoftext|>Q: noise\nA: silence\n\nQ: les'
+  first 8 token ids : [151643, 48, 25, 11980, 198, 32, 25, 21162]
+  first 8 decoded   : ['<|endoftext|>', 'Q', ':', ' noise', '\n', 'A', ':', ' silence']
+  leading BOS-like tokens: 1 ([151643])
+  [mean-acts path] n_token_labels=90  first label='bos_token' first tok='<|endoftext|>'
+  VERDICT: OK (single leading BOS)

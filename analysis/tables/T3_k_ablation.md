@@ -1,0 +1,12 @@
+**T3: Zero-shot accuracy with FV built from top-k heads, injected at the best layer from the main (k=10) sweep. k=100 run for Mistral antonym only.**
+
+|Model|Task|Layer|k=5|k=10|k=20|k=50|k=100|
+|---|---|---|---|---|---|---|---|
+|GPT-J-6B|antonym|L11|0.55|0.61|0.70|0.64|--|
+|GPT-J-6B|country-capital|L8|0.73|0.90|0.93|0.93|--|
+|Llama-3.1-8B|antonym|L13|0.58|0.48|0.69|0.73|--|
+|Llama-3.1-8B|country-capital|L14|0.12|0.48|0.29|0.93|--|
+|Qwen2.5-7B|antonym|L16|0.43|0.64|0.62|0.50|--|
+|Qwen2.5-7B|country-capital|L19|0.31|0.38|0.81|0.93|--|
+|Mistral-7B-v0.3|antonym|L14|0.09|0.12|0.16|0.34|0.45|
+|Mistral-7B-v0.3|country-capital|L0|0.05|0.05|0.00|0.05|--|

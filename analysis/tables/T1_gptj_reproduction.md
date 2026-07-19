@@ -1,0 +1,10 @@
+**T1: GPT-J-6B reproduction. Paper values are Todd et al. Table 10 (zero-shot accuracy with the task FV at their chosen layer, mean±std over seeds); ours are best-over-layer-sweep (single seed 42), so ours upper-bound the paper protocol.**
+
+|Task|Paper +FV (%)|Ours +FV (%)|Best layer|No-interv (%)|FV effect (pp)|
+|---|---|---|---|---|---|
+|antonym|48.2±2.0|60.5|L11|0.9|+59.6|
+|capitalize|70.5±2.4|77.5|L10|0.0|+77.5|
+|country-capital|83.2±2.7|90.2|L8|4.9|+85.4|
+|english-french|44.7±1.2|72.5|L5|1.5|+71.0|
+|present-past|19.7±5.9|55.2|L3|1.7|+53.4|
+|singular-plural|47.0±3.4|83.3|L13|21.4|+61.9|
