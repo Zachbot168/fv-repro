@@ -28,7 +28,6 @@ analysis.
 | `results_repro/` | **All raw results** (layer-sweep evals, baselines, indirect-effect tensors, exact run args per cell) |
 | `analysis/` | `make_tables.py` (tables/figures/summary from `results_repro/`), `fv_probe.py` (FV norm + vocab decode), `provenance.md` (number → file map), `mistral_verification.md` |
 | `paper/` | LaTeX source; `prepare_tables.sh` wires the generated tables into the paper |
-| `STAGE1_REPORT.md`, `STAGE2_REPORT.md` | Run logs/reports for the smoke test and the full sweep |
 | `EXPERIMENT_PLAN.md` | The pre-registered experiment plan |
 
 ## Reproducing

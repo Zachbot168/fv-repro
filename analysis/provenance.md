@@ -14,12 +14,13 @@ meta-llama_Llama-3.1-8B, Qwen_Qwen2.5-7B, mistralai_Mistral-7B-v0.3}, `<T>` ∈ 
 | ICL baselines | `results_repro/<M>/<T>/model_baseline.json` (`'0'`/`'10'` → `clean_topk` top-1) | direct read |
 | FV norms / vocab decode | cached mean-activations + IE tensors → `analysis/fv_probe_results.json` | `analysis/fv_probe.py` |
 | Mistral verification | all of the above + `results_repro/sweep_progress.log` (epochs) + git history | `analysis/mistral_verification.md` |
-| Runtimes | `results_repro/sweep_progress.log` (`elapsed=` fields); smoke-test total in `STAGE1_REPORT.md` (`ELAPSED_SEC=6010`) | grep |
+| Runtimes | `results_repro/sweep_progress.log` (`elapsed=` fields); smoke-test total in `results_repro/smoke_gptj_antonym.log` (`ELAPSED_SEC=6010`) | grep |
 
 Notes:
 - Ours-vs-paper caveat (T1): paper reports FV accuracy at *their chosen layer*, mean±std over
   seeds; we report best-over-layer-sweep at seed 42. Our GPT-J antonym at the paper's layer
-  (~L9) was 49.2% vs their 48.2±2.0 (see STAGE1_REPORT.md).
+  (~L9) was 49.2% vs their 48.2±2.0 (layer key "9" in
+  `results_repro/EleutherAI_gpt-j-6b/antonym/zs_results_layer_sweep.json`).
 - `*_mean_head_activations.pt` files are **gitignored** (44 MB each, regenerable via
   `compute_indirect_effect.py` / the driver from the committed configs). They existed on the
   run pod only. Everything needed to *recompute* them (dataset, seed, args json) is committed.
