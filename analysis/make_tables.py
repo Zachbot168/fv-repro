@@ -117,7 +117,7 @@ for t in TASKS:
         t2_data[t][name] = {'effect': round(float(eff[bi]), 3), 'best_layer': layers[bi],
                             'fv_acc': round(float(interv[bi]), 3), 'clean': round(float(clean[bi]), 3)}
     rows.append(row)
-n_transfer = ['tasks transferring (effect>0.3)']
+n_transfer = ['tasks transferring (effect$>$0.3)']
 for tag, name, nl in MODELS:
     n = sum(1 for t in TASKS if t2_data[t][name]['effect'] > 0.3)
     n_transfer.append(f"{n}/6")
@@ -179,7 +179,7 @@ write_table('T4_aie_concentration',
             ['Model', '# heads', 'Top-10 AIE share', 'Top-1% AIE share', 'Max per-head AIE'],
             rows,
             'T4: Concentration of causal task signal. Share of total positive mean AIE mass captured '
-            'by the top-10 (and top-1% of) heads, and the largest single-head mean AIE, averaged over '
+            'by the top-10 (and top-1\\% of) heads, and the largest single-head mean AIE, averaged over '
             'the six tasks.')
 summary['T4'] = t4_data
 
